@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Form</title>
+    <style>
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+        }
+        .container {
+    width: 60%;
+    margin: 40px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 20px;
+}
+        input[type="text"], input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .button-container {
+            text-align: right;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0069d9;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .required::after {
+            content: " *";
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Administrators</h2>
+        <form action="{{ route('submit.form') }}" method="post">
+
+        @csrf {{-- Cross-Site Request Forgery Protection --}}
+
+
+        @if ($errors->any())
+<div>
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+
+        <label for="email" class="required">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" >
+
+        <label for="password_confirmation">Repeat Password</label>
+        <input type="password" id="password_confirmation" name="password_confirmation">
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" >
+
+        <label for="access_type" class="required">Access Type</label>
+        <input type="text" id="access_type" name="access_type" required>
+ 
+
+        <label for="status" class="required">Status</label>
+        <input type="text" id="status" name="status" required>
+
+
+        <div class="button-container">
+            <input type="submit" value="Save">
+        </div>
+    </form>
+</div>
+
+<script>
+</script>
+
+</body>
+</html>
